@@ -18,22 +18,28 @@ This is a scaffolding project that includes boilerplate code for:
 
 1. Start your own project folder 
 
-    cd ~/Github\ Projects/
-    mkdir example01
-    cd example01
+```sh
+cd ~/Github\ Projects/
+mkdir example01
+cd example01
+```
 
 2. Install this package through npm (**Warning**: this _will_ delete/overwrite files, so **ONLY** use this on brand new project folders)
 
-    npm install unversal-js-boilerplate
+```sh
+npm install unversal-js-boilerplate
+```
 
 3. Watch the package scaffold out files in your project
 4. Start your server:
 
-    npm run s
+```sh
+npm run s
 
-    # Alternatively, if you need nodemon to auto-reload your server 
-    # (when doing server-side work)
-    # npm run server
+# Alternatively, if you need nodemon to auto-reload your server 
+# (when doing server-side work)
+# npm run server
+```
 
 #### License
 
