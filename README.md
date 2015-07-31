@@ -41,6 +41,12 @@ npm run s
 # npm run server
 ```
 
+5. Ready to push your code live, and want to minify your code with uglifyjs?
+
+```sh
+npm run build
+```
+
 #### License
 
 MIT.
