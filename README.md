@@ -27,7 +27,7 @@ This is a scaffolding project that includes boilerplate code for:
 2. Install this package through npm (**Warning**: this _will_ delete/overwrite files, so **ONLY** use this on brand new project folders)
 
     ```sh
-    npm install unversal-js-boilerplate
+    npm install universal-js-boilerplate
     ```
 
 3. Watch the package scaffold out files in your project
