@@ -6,7 +6,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "github.com:matthiasak/universal-js-boilerplate.git"
+        "url": "github.com/matthiasak/universal-js-boilerplate.git"
     },
     "engines": {
         "node": "^0.12.5"
