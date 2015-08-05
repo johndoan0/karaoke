@@ -1,16 +1,33 @@
 {
-  "name": "universal-js-boilerplate",
-  "version": "1.1.7",
-  "description": "This is a Node/Browserify/Babel/Backbone/React/etc boilerplate. To be used as an initial scaffolding tool.",
-  "author": "Matthew Keas <matthiasak@gmail.com>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/matthiasak/universal-js-boilerplate.git"
-  },
-  "scripts": {
-    "postinstall": "npm run copy_files && npm run msg;",
-    "copy_files": "cp -rf ~+/* ~+/../../; cp ~+/../../gitignore ~+/../../.gitignore; mv ~+/../../replace.json ~+/../../package.json",
-    "msg": "# ---------------------------------\n# \n# \n# Do either 1 or 2, not both:\n# \n# 1. If you have your global tools already installed from a prior project with this boilerplate (babel, postcss, etc): _npm run linkup_.\n# 2. If you don't yet run this, run it once and don't run it again: _npm run setup_.\n# \n# \n# ---------------------------------\n#\n#\n#---- finally start your server with _npm run s_ :-) \""
-  }
+    "name": "universal-js-boilerplate",
+    "version": "1.1.7",
+    "description": "This is a Node/Browserify/Babel/Backbone/React/etc boilerplate. To be used as an initial scaffolding tool.",
+    "author": "Matthew Keas <matthiasak@gmail.com>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/matthiasak/universal-js-boilerplate.git"
+    },
+    "scripts": {
+        "postinstall": "npm run copy_files && npm run msg;",
+        "copy_files": "cp -rf ~+/* ~+/../../; cp ~+/../../gitignore ~+/../../.gitignore; mv ~+/../../replace.json ~+/../../package.json",
+        "msg": "# ---------------------------------\n# \n# \n# Do either 1 or 2, not both:\n# \n# 1. If you have your global tools already installed from a prior project with this boilerplate (babel, postcss, etc): _npm run linkup_.\n# 2. If you don't yet run this, run it once and don't run it again: _npm run setup_.\n# \n# \n# ---------------------------------\n#\n#\n#---- finally start your server with _npm run s_ :-) \""
+    },
+    "dependencies": {
+        "es5-shim": "^4.1.4",
+        "express": "^4.12.3",
+        "request": "^2.55.0",
+        "es6-promise": "^2.1.1",
+        "node-fetch": "^1.2.1",
+        "whatwg-fetch": "^0.8.2",
+        "jquery": "~2.1.4",
+        "react": "^0.13.3",
+        "underscore": "^1.8.3",
+        "backbone": "^1.2.1",
+        "babel": "^5.6.7",
+        "babel-runtime": "^5.6.5",
+        "csurf": "^1.8.3",
+        "express-session": "^1.11.3",
+        "method-override": "^2.3.3"
+    }
 }
