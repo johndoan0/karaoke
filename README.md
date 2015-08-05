@@ -35,6 +35,14 @@ This is a scaffolding project that includes boilerplate code for:
     ```
 
 3. Watch the package scaffold out files in your project
+4. Link or install global tools like bower, babel, etc...
+
+    ```sh
+    # first time ever installing this package on your machine?
+    npm run setup
+    # if not then just run..
+    npm run linkup
+    ```
 4. Start your server:
 
     ```sh
