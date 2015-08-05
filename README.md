@@ -43,7 +43,8 @@ This is a scaffolding project that includes boilerplate code for:
     # if not then just run..
     npm run linkup
     ```
-4. Start your server:
+    
+5. Start your server:
 
     ```sh
     npm run s
@@ -53,11 +54,11 @@ This is a scaffolding project that includes boilerplate code for:
     # npm run server
     ```
 
-5. Ready to push your code live, and want to minify your code with uglifyjs?
+6. Ready to push your code live, and want to minify your code with uglifyjs?
 
-```sh
-npm run build
-```
+    ```sh
+    npm run build
+    ```
 
 #### License
 
