@@ -4,11 +4,7 @@ require("es5-shim")
 // es6 polyfills, powered by babel
 require("babel/polyfill")
 
-var Promise = require('es6-promise').Promise
-// just Node?
-// var fetch = require('node-fetch')
-// Browserify?
-// require('whatwg-fetch') //--> not a typo, don't store as a var
+let fetch = require('./fetcher')
 
 // other stuff that we don't really use in our own code
 // var Pace = require("../bower_components/pace/pace.js")

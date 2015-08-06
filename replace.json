@@ -7,6 +7,9 @@
     "engines": {
         "node": "^0.12.5"
     },
+    "browser": {
+        "./js/fetcher/index.js": "./js/fetcher/browser.js"
+    },
     "repository": {
         "type": "git",
         "url": "github.com:FILL-ME-IN.git"
