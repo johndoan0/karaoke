@@ -7,7 +7,8 @@ var express = require('express'),
     request = require('request'),
     session = require('express-session'),
     csrf = require('csurf'),
-    override = require('method-override')
+    override = require('method-override'),
+    compression = require('compression')
 
 function startServer() {
 
@@ -39,6 +40,7 @@ function startServer() {
 
     // all environments
     app.set('port', process.argv[3] || process.env.PORT || 3000)
+    app.use(compression())
     app.use(express.static(__dirname+'/dist'))
 
     // SOME SECURITY STUFF
