@@ -1,7 +1,4 @@
-// es5 polyfills, powered by es5-shim
-require("es5-shim")
-
-// es6 polyfills, powered by babel
+// es5 and 6 polyfills, powered by babel
 require("babel/polyfill")
 
 let fetch = require('./fetcher')
