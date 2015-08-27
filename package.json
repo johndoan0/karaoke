@@ -10,7 +10,7 @@
   },
   "scripts": {
     "postinstall": "npm run copy_files && npm run msg;",
-    "copy_files": "cp -rf ~+/* ~+/../../; cp ~+/../../gitignore ~+/../../.gitignore; mv ~+/../../replace.json ~+/../../package.json",
+    "copy_files": "cp -rf ~+/* ~+/../../; cp ~+/../../gitignore ~+/../../.gitignore; mv ~+/../../replace.json ~+/../../package.json; rm -rf ~+/node_modules/universal-js-boilerplate;",
     "msg": "# ---------------------------------\n# \n# \n# Do either 1 or 2, not both:\n# \n# 1. If you have your global tools already installed from a prior project with this boilerplate (babel, postcss, etc): _npm run linkup_.\n# 2. If you don't yet run this, run it once and don't run it again: _npm run setup_.\n# \n# \n# ---------------------------------\n#\n#\n#---- finally start your server with _npm run s_ :-) \""
   },
   "dependencies": {
