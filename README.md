@@ -20,41 +20,36 @@ This is a scaffolding project that includes boilerplate code for:
 
 #### How to get started
 
-1. Start your own project folder 
+1. Start your own project folder with a git clone
 
     ```sh
     cd ~/Github\ Projects/
-    mkdir example01
-    cd example01
+    git clone git@github.com:matthiasak/universal-js-boilerplate.git NEWPROJECT
+    cd NEWPROJECT
     ```
 
-2. Install this package through npm (**Warning**: this _will_ delete/overwrite files, so **ONLY** use this on brand new project folders)
+2. Install prerequisites
 
     ```sh
-    npm install universal-js-boilerplate
-    ```
+    npm install
 
-3. Watch the package scaffold out files in your project
-4. Link or install global tools like bower, babel, etc...
-
-    ```sh
-    # first time ever installing this package on your machine?
+    # if you've not installed the global tools before
     npm run setup
-    # if not then just run..
+    # otherwise, if you've installed these before
     npm run linkup
     ```
-    
-5. Start your server:
+
+3. Start your server:
 
     ```sh
     npm run s
 
-    # Alternatively, if you need nodemon to auto-reload your server 
+    # Alternatively, if you need nodemon to auto-reload your server
     # (when doing server-side work)
     # npm run server
     ```
 
-6. Ready to push your code live, and want to minify your code with uglifyjs?
+4. Ready to push your code live, and want to minify your code with uglifyjs?
 
     ```sh
     npm run build
