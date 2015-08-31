@@ -1,6 +1,6 @@
 {
   "name": "universal-js-boilerplate",
-  "version": "1.1.18",
+  "version": "1.1.19",
   "description": "This is a Node/Browserify/Babel/Backbone/React/etc boilerplate. To be used as an initial scaffolding tool.",
   "author": "Matthew Keas <matthiasak@gmail.com>",
   "license": "MIT",
@@ -19,11 +19,9 @@
     "build:css": "postcss --use postcss-import --use postcss-mixins --use postcss-simple-vars --use postcss-calc --use postcss-nested --use postcss-conditionals --use postcss-for --use postcss-each --use postcss-simple-extend --use autoprefixer --use csswring -o ./dist/style.css scss/style.scss;",
     "build:js": "browserify -e ./js/app-browserify.js -t [babelify --stage 1] > ./dist/app-browserify.js",
     "build": "npm run build:js & npm run build:css",
-
     "watch:css": "npm run build:css; sane 'npm run build:css' ./scss --glob='**/*.css' --glob='**/*.scss'",
     "watch:js": "npm run build:js; sane 'npm run build:js' ./js --glob='**/*.js'",
     "watch": "npm run watch:css & npm run watch:js;",
-
     "test": "mocha ./js/test/; echo '----- tests done'",
     "server": "nodemon --watch . --ext js,jsx heroku-server.js & npm run watch",
     "start": "npm run n heroku-server.js",
