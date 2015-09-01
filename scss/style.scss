@@ -63,33 +63,6 @@
 @mixin grid_r 4, 800 {}
 
 /**
- * PACE (automatic pre-loader thingy)
- */
-
-.pace {
-    pointer-events: none;
-    user-select: none;
-    transition: all 1s ease;
-    .pace-progress {
-        background: #2299dd;
-        position: fixed;
-        z-index: 2000;
-        top: 0;
-        right: 100%;
-        width: 100%;
-        height: 2px;
-        transition: all 1s ease;
-    }
-}
-
-.pace-inactive {
-    opacity: 0;
-}
-
-.pace-active {
-    opacity: 1;
-}
-/**
  * GENERAL
  */
 
@@ -99,3 +72,45 @@ img {
 /**
  * YOUR CODE HERE
  */
+
+.container {
+    & > *:nth-child(2) {padding-top: 11rem;}
+}
+
+.menu {
+    background-color: black;
+    padding: 2rem;
+    top:2rem;
+    left:2rem;
+    right:2rem;
+    position: fixed;
+    color: white;
+}
+
+section {
+    min-height: 100vh;
+    background-color: purple;
+    color: white;
+    position: relative;
+    z-index: 1;
+    &:nth-of-type(1) {
+        background-image: url(https://images.unsplash.com/photo-1438755582627-221038b62986?q=80&fm=jpg&s=ce1a984f1ac11887a5d5569ebbce53fb);
+        background-size: cover;
+        background-position: center;
+    }
+    &:nth-of-type(2) {
+        background: green;
+        position: relative;
+        overflow: hidden;
+        z-index: 0;
+        h1 {
+            position: fixed;
+            top:50%;
+            left:50%;
+        }
+    }
+}
+
+
+
+
