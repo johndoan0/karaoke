@@ -62,9 +62,15 @@ function startServer() {
     })
     // ---------------------------
 
-    http.createServer(app).listen(app.get('port'), function() {
-        console.log('Express server listening on port ' + app.get('port'))
-    })
+    const throwYourHandsUp = (port=app.get('port')) => {
+        http.createServer(app).listen(port, () => {
+            console.log(`Express server listening on port ${port}`)
+        }).on('error', e => {
+            app.set('port', port+1)
+            throwYourHandsUp()
+        })
+    }
+    throwYourHandsUp()
 
 }
 
