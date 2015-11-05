@@ -27,47 +27,50 @@ var OwnerView = React.createClass({
 			var valsMatrix = resultFile.map(function(ele){return ele.toLowerCase().split(',')})
 			
 			var songsRowObj = valsMatrix.map(function(arrEle){
-				var songsForParse = new Parse.Object('Song'),
-					venueId = Parse.User.current().id
-					songsForParse.set('venueId',venueId)
+				var songsForParse = new Parse.Object('karaoke'),
+					venueId = Parse.User.current().getUsername()
+					songsForParse.set('VenueName',venueId)
 				for (var i = 0; i < arrEle.length; i++) {
 					var key = keysArr[i],
 						val = arrEle[i]
 					songsForParse.set(key, val)
 				};
 
-				// window.sfp = songsForParse
-				// songsForParse.saveAll()
 				return songsForParse			
 			})
 
 			window.s = songsRowObj
-			console.log('Obj being saved', songsRowObj)
+			console.log('Obj not filtered', songsRowObj)
 
-			// constrain(vID,'sadfa').find().then(()=>{this.destroy().then(()=>p.o.saveAll())})
-
-			var PreviousSave = Parse.Object.extend('Song'),
+			var PreviousSave = Parse.Object.extend('karaoke'),
 				pSaveQuery = new Parse.Query(PreviousSave)
-			window.psq=pSaveQuery
-			var pSQDestroyAll = pSaveQuery.equalTo('venueId', Parse.User.current().id)
-				.find({
-					success: function(posts){
-        						Parse.Object.destroyAll(posts)
-        					}
-        			}
-        		)
-        	pSQDestroyAll.then(function(){
-        		Parse.Object.saveAll(songsRowObj, {success: alert('file uploaded!')})
-        	})
+			var pSQFind = pSaveQuery.equalTo('VenueName', Parse.User.current().getUsername())
+				.find()
+			window.psqf = pSQFind
+	
+			var buildLookupTable = function(songsArray) {
+				var table = {}
+				// console.log('bare table', songsArray)
+				for (var i = 0; i < songsArray.length; i++) {
+					table[songsArray[i].attributes.Artist + 
+						"_" + 
+						songsArray[i].attributes.Song] = true
+				};
+				return table 
+			}
 
-
-
-			// pSaveQuery.get("venueId", Parse.User.current().id)
-			// 	.then(function(previousData){console.log(previousData);return previousData.destroy()})
-			// 	.then(function(destroyedPD){return destroyedPD.saveAll()})
-			// .then(function(){Parse.Object.saveAll(songsRowObj, {success: alert('file uploaded!')})})
-
-			// Parse.Object.saveAll(songsRowObj, {success: alert('file uploaded!')})
+			pSQFind.then(function(oldSongs){
+				var newSongs = songsRowObj
+				var oldSongSet = buildLookupTable(oldSongs)
+				console.log('table with stuff', oldSongSet)
+				var filteredNewSongs = newSongs.filter(function(songObj){
+					var uniqueKey = songObj.get('Artist') + '_' + songObj.get('Song')
+					if (oldSongSet[uniqueKey]) return false
+					return true 
+				})
+				console.log('filtered songs to upload', filteredNewSongs)
+				Parse.Object.saveAll(filteredNewSongs).then(function(){alert('saved em all!')})
+			})
 		}
 
 		reader.readAsText(uploadFile)

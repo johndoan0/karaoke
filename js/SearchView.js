@@ -128,7 +128,7 @@ var ShowResultsTableData = React.createClass({
 			<tr>
 				<td>{singleResult.Song}</td>
 				<td>{singleResult.Artist}</td>
-				<td>{singleResult.VenueNames}</td>
+				<td>{singleResult.VenueName}</td>
 			</tr>	
 		)
 	}
