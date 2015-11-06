@@ -14,7 +14,7 @@ var LoginViewOwner = React.createClass({
 
 	render: function(){
 		return (
-			<div id="loginBox">
+			<div id="loginBoxOwner">
 				<input type="text" placeholder="username" ref="usernameInput"/>
 				<input type="password" placeholder="password" onKeyPress={this._getLoginParams}/>
 			</div>

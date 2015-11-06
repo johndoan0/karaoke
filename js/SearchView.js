@@ -6,10 +6,11 @@ window.SR = SearchResults
 var SearchView = React.createClass({
 
 	render: function(){
+		// <div id="searchView">
+		// </div>
+
 		return(
-			<div id="searchView">
-				<InputBox />
-			</div>
+			<InputBox />
 		)
 	}
 })
@@ -46,12 +47,15 @@ var InputBox = React.createClass({
 	},
 
 	render: function(){
+		// <LoginButtonUser />
 		return(
-			<div>
-				<input type='text' id="inputBox" placeholder="Search for..." onKeyPress={this._inputValueHandler}/>
-				<SelectFilter />
-				<LoginButtonUser />
+			<div id="searchView">
 				<LoginButtonOwner />
+				<SiteHeader />
+				<div className="input-group input-group-lg">
+					<input type='text' className="form-control" id="inputSearch" placeholder="Search for..." onKeyPress={this._inputValueHandler}/>
+				</div>
+				<SelectFilter />				
 				<SearchResults resultsArr={this.state.resultsArr}/>
 			</div>
 		)
@@ -66,7 +70,7 @@ var LoginButtonOwner = React.createClass({
 	
 	render: function(){
 		return(
-			<button type="button" onClick={this._changeHashLoginViewOwner}>Owner Login</button>
+			<button id="loginOwnerButton" type="button" onClick={this._changeHashLoginViewOwner}>Owner Login</button>
 		)
 	}
 })
@@ -86,7 +90,6 @@ var LoginButtonUser = React.createClass({
 })
 
 var SearchResults = React.createClass({
-
 
 	_resultsTableData: function(resultsArr){
 		console.log('resultsTable', resultsArr)
@@ -145,6 +148,17 @@ var ShowResultsTableHeaders = React.createClass({
 					<th>Venue</th>
 				</tr>
 			</thead>
+		)
+	}
+})
+
+var SiteHeader = React.createClass({
+	render: function(){
+		return(
+			<div className="jumbotron" id="siteHeader" >
+				<h1>SINGERS HOUSTON</h1>
+				<p>Find your favorite songs at your favorite Houston karaoke places</p>
+			</div>
 		)
 	}
 })

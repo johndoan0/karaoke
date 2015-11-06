@@ -39,8 +39,6 @@ import {LoginViewUser} from './LoginViewUser.js'
 import {LoginViewOwner} from './LoginViewOwner.js'
 import {OwnerView} from './OwnerView.js'
 
-// React.render(<SearchView />, document.querySelector("#container"))
-
 
 var KaraokeRouter = Backbone.Router.extend({
 
@@ -129,19 +127,19 @@ var KaraokeRouter = Backbone.Router.extend({
 	},
 
 	showLoginOwner: function(){
-		React.render(<LoginViewOwner sendUserInfo={this.processOwnerInfo} />, document.querySelector("#container"))
+		React.render(<LoginViewOwner sendUserInfo={this.processOwnerInfo} />, document.querySelector("#wrapper"))
 	},
 
 	showLoginUser: function(){
-		React.render(<LoginViewUser sendUserInfo={this.processUserInfo} />, document.querySelector("#container"))
+		React.render(<LoginViewUser sendUserInfo={this.processUserInfo} />, document.querySelector("#wrapper"))
 	},
 
 	showOwnerView: function(){
-		React.render(<OwnerView />, document.querySelector("#container"))
+		React.render(<OwnerView />, document.querySelector("#wrapper"))
 	},
 
 	showSearchView: function(){
-		React.render(<SearchView />, document.querySelector("#container"))
+		React.render(<SearchView />, document.querySelector("#wrapper"))
 	}
 })
 
