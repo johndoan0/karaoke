@@ -80,8 +80,11 @@ var OwnerView = React.createClass({
 	render: function(){
 		return(
 			<div id="ownerView">
-				<button type="button" onClick={this._logout}>Log Out</button>
-				<form>
+				<button type="button" className="btn btn-default btn-xs ownerLogOut" onClick={this._logout}>Log Out</button>
+				<h5>{Parse.User.current().getUsername()} is logged in!</h5>
+				<br></br>
+				<form id="ownerUpload">
+					<h3>Upload a .csv song list! </h3>
   					<input type="file" accept="txt/*" id="fileinput"/>
   					<input type="submit" onClick={this._readFile} />
 				</form>

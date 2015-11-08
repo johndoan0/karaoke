@@ -17,15 +17,15 @@
     transition-timing-function: ease;
 
     /*OUTLINES ELEMENT WITH RED BORDER*/
-    outline: 1px solid rgba(200,0,0,.15);
-    tranition: all .1s;
-}
+    /*outline: 1px solid rgba(200,0,0,.15);
+    transition: all .1s;
+*/}
 
 
 /*OUTLINES ELEMENT WITH RED BORDER ON HOVER*/
-*:hover{
+/**:hover{
   outline: 2px solid rgba(200,0,0,.15);
-}
+}*/
 
 /**
  * GRIDS
@@ -87,28 +87,68 @@ img {
 
 #searchView{
 
+    #inputSearch{
+        border: 0px;
+        float: none;
+        margin: 0 auto;
+        width: 70%;
+    }
+
     #loginOwnerButton{
         float: right;
+    }
+
+    .searchResults{
+
+        border: 0px solid white;
+
+        #tableView{
+            border: 0px;
+            width: 80%;
+            margin: 0 auto;
+        }      
     }
 
     #siteHeader{
         padding-top: 109px;
         text-align: center;
-        
-    }
 
-    #tableView{
-        border: 2px solid black;
-        margin: 1rem;
-
-        #tableHeaders{
-            border-bottom: 1px solid black;
-            th{
-                border-right: 1px solid black;
-            }
-        }
     }
 }
 
+    
 
 
+.form-signin{
+
+    margin: 0 auto;
+    margin-top: 150px;
+
+    
+    .form-signin-heading{
+        /*margin: 0 auto;*/
+        text-align: center;
+    }
+
+
+    .input-group{
+
+        margin: 0 auto;
+
+        .loginOwnerInputs{
+            /*width: 30%;*/
+            margin-bottom: 5px;
+        }
+    }    
+}
+
+#ownerView{
+    .ownerLogOut{
+        float: right;
+        background-color: lightblue;
+    }
+
+    #ownerUpload{
+        text-align: center;
+    }
+}

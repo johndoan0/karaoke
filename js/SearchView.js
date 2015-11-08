@@ -52,10 +52,10 @@ var InputBox = React.createClass({
 			<div id="searchView">
 				<LoginButtonOwner />
 				<SiteHeader />
-				<div className="input-group input-group-lg">
-					<input type='text' className="form-control" id="inputSearch" placeholder="Search for..." onKeyPress={this._inputValueHandler}/>
+				<div className="input-group input-group-lg" id="inputSearch">
+					<input type='text' className="form-control"  placeholder="Search for Artist..." onKeyPress={this._inputValueHandler}/>
 				</div>
-				<SelectFilter />				
+				<SelectFilter />			
 				<SearchResults resultsArr={this.state.resultsArr}/>
 			</div>
 		)
@@ -100,8 +100,8 @@ var SearchResults = React.createClass({
 		var resultsArr = this.props.resultsArr
 		console.log('searchresults', resultsArr)
 		return(
-			<div id='searchResults'>
-				<table id="tableView">
+			<div className="panel panel-default searchResults">
+				<table className="table"id="tableView">
 					<ShowResultsTableHeaders />
 					<tbody id="tableData">
 						{resultsArr.map(this._resultsTableData)}
@@ -114,11 +114,23 @@ var SearchResults = React.createClass({
 
 var SelectFilter = React.createClass({
 	render: function(){
+		
+		// <option value="song">Song</option>
+
+		// <select>
+		// 		<option value="artist">Artist</option>		
+		// </select>
+
 		return(
-			<select>
-				<option value="artist">Artist</option>
-				<option value="song">Song</option>
-			</select>
+			<div class="form-group">
+			  <label for="sel1">Show all songs from:</label>
+			  <select class="form-control" id="sel1">
+			    <option>Spotlight</option>
+			    <option>Glitter</option>
+			    <option>Genjis</option>
+			    <option>Ziller</option>
+			  </select>
+			</div>
 		)
 	}
 })
@@ -156,8 +168,8 @@ var SiteHeader = React.createClass({
 	render: function(){
 		return(
 			<div className="jumbotron" id="siteHeader" >
-				<h1>SINGERS HOUSTON</h1>
-				<p>Find your favorite songs at your favorite Houston karaoke places</p>
+				<h1>JUST SING</h1>
+				<p>Find your favorite songs at your favorite karaoke places</p>
 			</div>
 		)
 	}
