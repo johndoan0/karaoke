@@ -34,11 +34,13 @@ var Klistquery = new Parse.Query(KaraokeList)
 // 						.then(function(listArr){listArr.forEach(karaokeObjs)})
 
 
-import {SearchView} from './SearchView.js'
-import {LoginViewUser} from './LoginViewUser.js'
-import {LoginViewOwner} from './LoginViewOwner.js'
-import {OwnerView} from './OwnerView.js'
-
+import {SearchView} 		from './SearchView.js'
+import {LoginViewUser} 		from './LoginViewUser.js'
+import {LoginViewOwner} 	from './LoginViewOwner.js'
+import {OwnerView} 			from './OwnerView.js'
+import {UploaderView} 		from './OwnerUploadSongs.js'
+import {OwnerSongsView}		from './OwnerSongs.js'
+import {VenueProfile}		from './VenueProfile.js'
 
 var KaraokeRouter = Backbone.Router.extend({
 
@@ -47,6 +49,10 @@ var KaraokeRouter = Backbone.Router.extend({
 		"loginViewUser": "showLoginUser",
 		"loginViewOwner": "showLoginOwner",
 		"ownerView": "showOwnerView",
+		"ownerView/uploadSongs": "showUploadSongs",
+		"ownerView/ownerSongs": "showOwnerSongs",
+		"venueProfile/:id": "showVenueProfile",
+		"venueProfileUser": "showVenueProfileUser",
 		"*anyroute": "routetoSearchView"
 	},
 
@@ -130,8 +136,27 @@ var KaraokeRouter = Backbone.Router.extend({
 		React.render(<LoginViewOwner sendUserInfo={this.processOwnerInfo} />, document.querySelector("#wrapper"))
 	},
 
+	showUploadSongs: function(){
+		React.render(<UploaderView />, document.querySelector("#wrapper"))
+	},
+
 	showLoginUser: function(){
 		React.render(<LoginViewUser sendUserInfo={this.processUserInfo} />, document.querySelector("#wrapper"))
+	},
+
+	showVenueProfile: function(id){
+		if (id === Parse.User.current().id)	React.render(<VenueProfile editable="true"/>, document.querySelector("#wrapper"))
+		else {
+			// query user table, .then(render the view with editable false)
+		}
+	},
+
+	showVenueProfileUser: function(){
+		React.render(<VenueProfile editable="false"/>, document.querySelector("#wrapper"))
+	},
+
+	showOwnerSongs: function(){
+		React.render(<OwnerSongsView />, document.querySelector("#wrapper"))
 	},
 
 	showOwnerView: function(){

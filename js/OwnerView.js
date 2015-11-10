@@ -9,85 +9,52 @@ var OwnerView = React.createClass({
 		location.hash = "searchView"
 	},
 
-	_readFile: function(){
-		var fileObj = {},
-		    valsArr = [],
-		    artistsStr = '',
-		    songsStr = '',
-		    venuesStr = '',
-		    valsStrAddComma = '',
-		    reader = new FileReader(),
-		   	uploadFile = document.getElementById('fileinput').files[0]
+	render: function(){
 
-		reader.onloadend = function(){
-			// console.log('results', reader.result)
-			var resultFile = reader.result.split('\n')
-			var keysArr = resultFile[0].split(',')
-			resultFile.shift()
-			var valsMatrix = resultFile.map(function(ele){return ele.toLowerCase().split(',')})
-			
-			var songsRowObj = valsMatrix.map(function(arrEle){
-				var songsForParse = new Parse.Object('karaoke'),
-					venueId = Parse.User.current().getUsername()
-					songsForParse.set('VenueName',venueId)
-				for (var i = 0; i < arrEle.length; i++) {
-					var key = keysArr[i],
-						val = arrEle[i]
-					songsForParse.set(key, val)
-				};
+		return(
+			<div className="panel panel-primary col-xs-4 col-sm-4 col-md-4 col-lg-4" id="ownerView">	
+				<PanelHeader />				
+				<div className="panel-body" id="ownerPanelBody">					
+					<ButtonOwnerNav />
+				</div>
+			</div>
+		)
+	}
+})
 
-				return songsForParse			
-			})
+var ButtonOwnerNav = React.createClass({
 
-			window.s = songsRowObj
-			console.log('Obj not filtered', songsRowObj)
+	_hashVenueProfile: function(){
+		var id = Parse.User.current().getUsername()
+		location.hash = "venueProfile/" + id
+	},
 
-			var PreviousSave = Parse.Object.extend('karaoke'),
-				pSaveQuery = new Parse.Query(PreviousSave)
-			var pSQFind = pSaveQuery.equalTo('VenueName', Parse.User.current().getUsername())
-				.find()
-			window.psqf = pSQFind
-	
-			var buildLookupTable = function(songsArray) {
-				var table = {}
-				// console.log('bare table', songsArray)
-				for (var i = 0; i < songsArray.length; i++) {
-					table[songsArray[i].attributes.Artist + 
-						"_" + 
-						songsArray[i].attributes.Song] = true
-				};
-				return table 
-			}
+	_hashOwnerSongs: function(){
+		location.hash = "ownerView/ownerSongs"
+	},
 
-			pSQFind.then(function(oldSongs){
-				var newSongs = songsRowObj
-				var oldSongSet = buildLookupTable(oldSongs)
-				console.log('table with stuff', oldSongSet)
-				var filteredNewSongs = newSongs.filter(function(songObj){
-					var uniqueKey = songObj.get('Artist') + '_' + songObj.get('Song')
-					if (oldSongSet[uniqueKey]) return false
-					return true 
-				})
-				console.log('filtered songs to upload', filteredNewSongs)
-				Parse.Object.saveAll(filteredNewSongs).then(function(){alert('saved em all!')})
-			})
-		}
-
-		reader.readAsText(uploadFile)
-		document.getElementById('fileinput').value = ''
+	_hashUploadSongs: function(){
+		location.hash = "ownerView/uploadSongs"
 	},
 
 	render: function(){
 		return(
-			<div id="ownerView">
+			<div className="btn-group-vertical" role="group" aria-label="...">
+				<button type="button" className="btn btn-success" onClick={this._hashVenueProfile}>My Profile</button>
+				<button type="button" className="btn btn-primary" onClick={this._hashOwnerSongs}>My Songs</button>
+				<button type="button" className="btn btn-info" onClick={this._hashUploadSongs}>Upload Songs</button>
+			</div>
+		)
+	}
+})
+
+var PanelHeader = React.createClass({
+	render: function(){
+		return(
+
+			<div className="panel-heading">
 				<button type="button" className="btn btn-default btn-xs ownerLogOut" onClick={this._logout}>Log Out</button>
-				<h5>{Parse.User.current().getUsername()} is logged in!</h5>
-				<br></br>
-				<form id="ownerUpload">
-					<h3>Upload a .csv song list! </h3>
-  					<input type="file" accept="txt/*" id="fileinput"/>
-  					<input type="submit" onClick={this._readFile} />
-				</form>
+				<h5 className="panel-title">{Parse.User.current().getUsername()} is logged in!</h5>
 			</div>
 		)
 	}
@@ -95,3 +62,4 @@ var OwnerView = React.createClass({
 
 
 export {OwnerView}
+export {PanelHeader}

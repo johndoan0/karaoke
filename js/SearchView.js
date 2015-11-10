@@ -6,8 +6,6 @@ window.SR = SearchResults
 var SearchView = React.createClass({
 
 	render: function(){
-		// <div id="searchView">
-		// </div>
 
 		return(
 			<InputBox />
@@ -19,6 +17,10 @@ var InputBox = React.createClass({
 
 	getInitialState: function(){
 		return {resultsArr: []}
+	},
+
+	_handleVenueValue: function(venVal){
+		this.setState({resultsArr: venVal})
 	},
 
 	_inputValueHandler: function(event){
@@ -55,7 +57,7 @@ var InputBox = React.createClass({
 				<div className="input-group input-group-lg" id="inputSearch">
 					<input type='text' className="form-control"  placeholder="Search for Artist..." onKeyPress={this._inputValueHandler}/>
 				</div>
-				<SelectFilter />			
+				<SelectFilter onVenueValue={this._handleVenueValue} />			
 				<SearchResults resultsArr={this.state.resultsArr}/>
 			</div>
 		)
@@ -113,22 +115,38 @@ var SearchResults = React.createClass({
 })
 
 var SelectFilter = React.createClass({
-	render: function(){
-		
-		// <option value="song">Song</option>
 
-		// <select>
-		// 		<option value="artist">Artist</option>		
-		// </select>
+	_venueResults: function(change){
+		var venueSelector = document.getElementById('sel1')
+		var venueValue = venueSelector.options[venueSelector.selectedIndex].value
+		console.log(venueValue)
+		var self = this
+		var searchValueQuery = new Parse.Query('karaoke')
+		var sVQContains = searchValueQuery.contains('VenueName', venueValue)
+		window.venuePromise = sVQContains.find()
+		
+		var processSearchResults = function(searchResultsArr){
+			var songInfoArr = searchResultsArr.map(function(ele){return ele.attributes})		
+			// send songInfoArr to parent InfoBox method ._handleVenueValue
+			self.props.onVenueValue(songInfoArr)
+		}
+
+		venuePromise.then(processSearchResults)
+	},
+
+	render: function(){
+
+		// ****{this._getOptions} to render options instead of hard code****
 
 		return(
-			<div class="form-group">
-			  <label for="sel1">Show all songs from:</label>
-			  <select class="form-control" id="sel1">
-			    <option>Spotlight</option>
-			    <option>Glitter</option>
-			    <option>Genjis</option>
-			    <option>Ziller</option>
+			<div className="form-group text-center col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			  <label for="sel1">Or show all songs from:</label>
+			  <select className="form-control" id="sel1" onChange={this._venueResults}>
+			  	<option>Select One:</option>
+			    <option value="Spotlight">Spotlight</option>
+			    <option value="Glitter">Glitter</option>
+			    <option value="Genjis">Genjis</option>
+			    <option value="Ziller">Ziller</option>
 			  </select>
 			</div>
 		)
@@ -168,7 +186,7 @@ var SiteHeader = React.createClass({
 	render: function(){
 		return(
 			<div className="jumbotron" id="siteHeader" >
-				<h1>JUST SING</h1>
+				<h1>SINGIT!</h1>
 				<p>Find your favorite songs at your favorite karaoke places</p>
 			</div>
 		)
