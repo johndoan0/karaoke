@@ -139,16 +139,16 @@ var SelectFilter = React.createClass({
 		// ****{this._getOptions} to render options instead of hard code****
 
 		return(
-			<div className="form-group text-center col-xs-6 col-sm-6 col-md-6 col-lg-6">
-			  <label for="sel1">Or show all songs from:</label>
+			<div className="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6" id="venueSel">
+			  <label for="sel1"><h5>Or show all songs from:</h5></label>
 			  <select className="form-control" id="sel1" onChange={this._venueResults}>
 			  	<option>Select One:</option>
-			    <option value="Spotlight">Spotlight</option>
+			    <option value="Spotlight">Spotlight Midtown</option>
 			    <option value="Glitter">Glitter</option>
 			    <option value="Genjis">Genjis</option>
 			    <option value="Ziller">Ziller</option>
 			  </select>
-			</div>
+			</div>	
 		)
 	}
 })

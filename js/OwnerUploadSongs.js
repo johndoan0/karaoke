@@ -93,7 +93,7 @@ var UploadSongs = React.createClass({
 	render: function(){
 		return(
 			<form id="ownerUpload">
-				<h3>Upload a .csv song list! </h3>
+				<h4>Upload a .csv song list</h4>
 					<input type="file" accept="txt/*" id="fileinput"/>
 					<input type="submit" onClick={this._readFile} />
 			</form>
@@ -109,7 +109,7 @@ var GoBackOwnerViewButton = React.createClass({
 
 	render: function(){
 		return(
-			<button type="button" onClick={this._hashOwnerView}>Go Back</button>
+			<button id="goBackOwnerView" type="button" onClick={this._hashOwnerView}>Go Back</button>
 		)
 	}
 

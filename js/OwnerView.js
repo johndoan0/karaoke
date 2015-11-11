@@ -7,9 +7,9 @@ var OwnerView = React.createClass({
 	render: function(){
 
 		return(
-			<div className="panel panel-primary col-xs-4 col-sm-4 col-md-4 col-lg-4" id="ownerView">	
+			<div className="panel panel-primary col-xs-6 col-sm-6 col-md-6 col-lg-6" id="ownerView">	
 				<PanelHeader />				
-				<div className="panel-body" id="ownerPanelBody">					
+				<div className="panel-body text-center" id="ownerPanelBody">					
 					<ButtonOwnerNav />
 				</div>
 			</div>
@@ -53,9 +53,9 @@ var PanelHeader = React.createClass({
 	render: function(){
 		return(
 
-			<div className="panel-heading">
+			<div className="panel-heading" id="ownerPanelHeader">
 				<button type="button" className="btn btn-default btn-xs ownerLogOut" onClick={this._logout}>Log Out</button>
-				<h5 className="panel-title">{Parse.User.current().getUsername()} is logged in!</h5>
+				<h5 className="panel-title">{Parse.User.current().getUsername()} is logged in</h5>
 			</div>
 		)
 	}

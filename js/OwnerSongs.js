@@ -60,7 +60,7 @@ var OwnerSongsTable = React.createClass({
 		return(
 			<div className="panel panel-info" id="venueTable">
 				<div className="panel-heading">{Parse.User.current().getUsername()} Songs</div>
-					<table className="table table-striped"id="tableView">
+					<table className="table table-striped" id="tableView">
 						<thead>
 							<tr>
 								<th>Artist</th>

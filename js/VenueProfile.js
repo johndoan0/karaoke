@@ -3,6 +3,8 @@ var Parse = require('parse')
 var $ = require('jQuery')
 
 import {GoBackOwnerViewButton} from './OwnerUploadSongs.js'
+import {PanelHeader} from './OwnerView.js'
+
 
 var VenueProfile = React.createClass({
 
@@ -39,7 +41,7 @@ var VenueProfile = React.createClass({
 			var vPArrProcess = venProfileArr.map(function(ele){
 				var eleAtt = ele.attributes
 				return(
-					<div>
+					<div id="venueProfile">
 						<div id="venueName">{eleAtt.venueName}</div>
 						<div id="address" contentEditable={self.props.editable}>{eleAtt.address}</div>
 						<div id="phone" contentEditable={self.props.editable}>{eleAtt.phone}</div>
@@ -84,8 +86,14 @@ var VenueProfile = React.createClass({
 	render: function(){
 		if (this.props.editable === 'true'){
 			return(
-				<div>	
-					{this.state.vProfileInfo}
+				<div className="panel panel-primary col-xs-4 col-sm-4 col-md-4 col-lg-4" id="ownerView">	
+					<PanelHeader />
+					<div className="panel panel-info">
+						<div className="panel-heading">Edit Your Profile</div>
+						<div className="panel-body">	
+							{this.state.vProfileInfo}
+						</div>
+					</div>
 					<button type="button" onClick={this._saveEdits}>Save</button>
 					<GoBackOwnerViewButton />
 				</div>
@@ -93,10 +101,14 @@ var VenueProfile = React.createClass({
 		}
 
 		if (this.props.editable === 'false'){
+
+			var vName = location.hash.split('/')[1]
+			
 			return(
-				<div>
+				<div className="panel panel-primary col-xs-4 col-sm-4 col-md-4 col-lg-4" id="userViewProfile">	
+					<div className="panel-heading">{vName} Profile</div>			
 					{this.state.vProfileInfo}
-					<button type="button" onClick={this._backToSearchView}>Back to Search</button>
+					<button id="backToSearch" type="button" onClick={this._backToSearchView}>Back to Search</button>
 				</div>
 			)
 		}
