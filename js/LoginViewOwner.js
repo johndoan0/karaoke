@@ -24,8 +24,6 @@ var LoginViewOwner = React.createClass({
 	},
 
 	render: function(){
-		
-		// swal("Here's a message!")
 	
 		return (		
 			<form className="form-signin">       

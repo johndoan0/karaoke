@@ -82,7 +82,7 @@ var UploadSongs = React.createClass({
 					return true 
 				})
 				console.log('filtered songs to upload', filteredNewSongs)
-				Parse.Object.saveAll(filteredNewSongs).then(function(){alert('saved em all!')})
+				Parse.Object.saveAll(filteredNewSongs).then(function(){alert('New Songs Saved!')})
 			})
 		}
 

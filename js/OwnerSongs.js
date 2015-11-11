@@ -39,8 +39,6 @@ var OwnerSongsTable = React.createClass({
 		window.venuePromise = venueContains.find()
 
 		var processSearchResults = function(searchResultsArr){
-
-			// ele.attributes
 			
 			var songInfoArr = searchResultsArr.map(function(ele){
 				return(
@@ -50,8 +48,6 @@ var OwnerSongsTable = React.createClass({
 					</tr>
 				) 	
 			})
-	
-			// console.log(songInfoArr)
 
 			self.setState({venueSongs:songInfoArr})
 		}

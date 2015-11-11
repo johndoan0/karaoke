@@ -3,11 +3,6 @@ var Parse = require('parse')
 var $ = require('jQuery')
 
 var OwnerView = React.createClass({
-	
-	_logout: function(click){
-		Parse.User.logOut();
-		location.hash = "searchView"
-	},
 
 	render: function(){
 
@@ -49,6 +44,12 @@ var ButtonOwnerNav = React.createClass({
 })
 
 var PanelHeader = React.createClass({
+
+	_logout: function(click){
+		Parse.User.logOut();
+		location.hash = "searchView"
+	},
+	
 	render: function(){
 		return(
 

@@ -103,7 +103,7 @@ var SearchResults = React.createClass({
 		console.log('searchresults', resultsArr)
 		return(
 			<div className="panel panel-default searchResults">
-				<table className="table"id="tableView">
+				<table className="table table-striped"id="tableView">
 					<ShowResultsTableHeaders />
 					<tbody id="tableData">
 						{resultsArr.map(this._resultsTableData)}
@@ -155,13 +155,18 @@ var SelectFilter = React.createClass({
 
 
 var ShowResultsTableData = React.createClass({
+
+	_hashVenueProfile: function(){
+		location.hash = "venueProfile/" + this.props.results.VenueName
+	},
+
 	render: function(){
 		var singleResult = this.props.results
 		return(		
 			<tr>
 				<td>{singleResult.Song}</td>
 				<td>{singleResult.Artist}</td>
-				<td>{singleResult.VenueName}</td>
+				<td><a onClick={this._hashVenueProfile}>{singleResult.VenueName}</a></td>
 			</tr>	
 		)
 	}

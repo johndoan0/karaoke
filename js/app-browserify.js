@@ -51,7 +51,7 @@ var KaraokeRouter = Backbone.Router.extend({
 		"ownerView": "showOwnerView",
 		"ownerView/uploadSongs": "showUploadSongs",
 		"ownerView/ownerSongs": "showOwnerSongs",
-		"venueProfile/:id": "showVenueProfile",
+		"venueProfile/:username": "showVenueProfile",
 		"venueProfileUser": "showVenueProfileUser",
 		"*anyroute": "routetoSearchView"
 	},
@@ -144,10 +144,23 @@ var KaraokeRouter = Backbone.Router.extend({
 		React.render(<LoginViewUser sendUserInfo={this.processUserInfo} />, document.querySelector("#wrapper"))
 	},
 
-	showVenueProfile: function(id){
-		if (id === Parse.User.current().id)	React.render(<VenueProfile editable="true"/>, document.querySelector("#wrapper"))
-		else {
-			// query user table, .then(render the view with editable false)
+	showVenueProfile: function(username){
+		console.log("username", username)
+		// console.log("parse user", Parse.User.current().getUsername())
+	
+		var editProfile = false
+		if (Parse.User.current()){
+			console.log('current user exists')
+			//prevents User A from editing User B data
+			if (username === Parse.User.current().getUsername()){ 
+				editProfile = true
+				React.render(<VenueProfile editable="true" />, document.querySelector("#wrapper"))
+			}	
+		}
+		
+		if (!editProfile) {
+			console.log('rendering uneditable user profile')
+			React.render(<VenueProfile editable="false" />, document.querySelector("#wrapper"))
 		}
 	},
 
