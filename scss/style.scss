@@ -1,7 +1,5 @@
 
-@import "../bower_components/normalize-css/normalize.css";
-@import "../bower_components/typeplate-starter-kit/css/typeplate.css";
-@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "/bootstrap.min.css";
 
 /**
  * BOX-SIZING
@@ -83,6 +81,10 @@ img {
 /**
  * YOUR CODE HERE
  */
+aside{
+    text-align: center;
+}
+
 
 .form-signin{
 
@@ -155,8 +157,28 @@ img {
     }
 
     #siteHeader{
+        position: relative;
         padding-top: 109px;
         text-align: center;
+        background: url(./images/1600x1067-people-festival-party-dancing.jpg) 100% 100% no-repeat;
+        background-size: cover;
+        height: 100vh;
+
+
+        .site-title{
+            background: rgba(255,255,255,.2);
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .downer{
+            position: absolute;
+            bottom: 10px; left: 50%;
+            transform: translateX(-50%);
+            font-size: 80px;
+            color: #fff;
+        }
     }
 }
 
@@ -166,6 +188,7 @@ img {
     #backToSearch{
         float: right;
         margin: 3%;
+
     }
 }
 

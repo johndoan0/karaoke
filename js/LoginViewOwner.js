@@ -34,11 +34,13 @@ var LoginViewOwner = React.createClass({
       					ref="usernameInput" autofocus="" />
       				<input type="password" className="form-control loginOwnerInputs" name="password" 
       					placeholder="Password" required="" ref="passwordInput" onKeyPress={this._getLoginParams} />
-      			</div>
-      			<div className="btn-group" role="group" aria-label="...">
-      				<button type="button" className="btn btn-default" onClick={this._logIn}>Log In</button>			 			
-      				<button type="button" className="btn btn-default" onClick={this._cancel}>Cancel</button>			
-  				</div>
+      			</div>	
+      			<aside>
+	      			<div className="btn-group" role="group" aria-label="...">
+	      				<button type="button" className="btn btn-default" onClick={this._logIn}>Log In</button>			 			
+	      				<button type="button" className="btn btn-default" onClick={this._cancel}>Cancel</button>			
+  					</div>
+  				</aside>
   			</form>
 		)
 	}

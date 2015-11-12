@@ -7,7 +7,7 @@ var OwnerView = React.createClass({
 	render: function(){
 
 		return(
-			<div className="panel panel-primary col-xs-6 col-sm-6 col-md-6 col-lg-6" id="ownerView">	
+			<div className="panel panel-primary col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6" id="ownerView">	
 				<PanelHeader />				
 				<div className="panel-body text-center" id="ownerPanelBody">					
 					<ButtonOwnerNav />

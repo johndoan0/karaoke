@@ -19,25 +19,42 @@ var InputBox = React.createClass({
 		return {resultsArr: []}
 	},
 
+	_getArtistorSongChange: function(){
+		var artistOrSong = document.querySelector('#artOrSong'),
+			artistOrSongChange = artistOrSong.options[artistOrSong.selectedIndex].text
+		return artistOrSongChange
+	},
+
 	_handleVenueValue: function(venVal){
 		this.setState({resultsArr: venVal})
 	},
 
-	_inputValueHandler: function(event){
+	_inputValueHandlerArtist: function(event){
 		if (event.which === 13){
 			var inputBox = event.target
 			var searchValue = inputBox.value
 			console.log('search value', searchValue)
 			inputBox.value = ''
-			this._searchValueToParse(searchValue)
+			this._searchValueToParseArtist(searchValue)
 		}
 	},
 
-	_searchValueToParse: function(value){
+	_inputValueHandlerSong: function(event){
+		if (event.which === 13){
+			var inputBox = event.target
+			var searchValue = inputBox.value
+			console.log('search value', searchValue)
+			inputBox.value = ''
+			this._searchValueToParseSong(searchValue)
+		}
+	},
+
+	_searchValueToParseArtist: function(value){
 		// console.log('enter parse function')
 		var self = this
+		// var artistOrSongValue = {this._getArtistorSongChange}
 		var searchValueQuery = new Parse.Query('karaoke')
-		var sVQContains = searchValueQuery.contains('Artist', value)
+		var sVQContains = searchValueQuery.contains("Artist", value)
 		var processSearchResults = function(searchResultsArr){
 			var songInfoArr = searchResultsArr.map(function(ele){return ele.attributes})
 			// console.log('song info arr ', songInfoArr)
@@ -45,17 +62,32 @@ var InputBox = React.createClass({
 		}
 		window.searchPromise = sVQContains.find()
 		var sInfoArr = searchPromise.then(processSearchResults)
+	},
 
+	_searchValueToParseSong: function(value){
+		// console.log('enter parse function')
+		var self = this
+		// var artistOrSongValue = {this._getArtistorSongChange}
+		var searchValueQuery = new Parse.Query('karaoke')
+		var sVQContains = searchValueQuery.contains("Song", value)
+		var processSearchResults = function(searchResultsArr){
+			var songInfoArr = searchResultsArr.map(function(ele){return ele.attributes})
+			// console.log('song info arr ', songInfoArr)
+			self.setState({resultsArr:songInfoArr})
+		}
+		window.searchPromise = sVQContains.find()
+		var sInfoArr = searchPromise.then(processSearchResults)
 	},
 
 	render: function(){
-		// <LoginButtonUser />
+		
 		return(
 			<div id="searchView">
-				<LoginButtonOwner />
 				<SiteHeader />
+				<LoginButtonOwner />
 				<div className="input-group input-group-lg" id="inputSearch">
-					<input type='text' className="form-control"  placeholder="Search for Artist..." onKeyPress={this._inputValueHandler}/>
+					<input type='text' className="form-control"  placeholder="Search for Artist..." onKeyPress={this._inputValueHandlerArtist}/>
+					<input type='text' className="form-control"  placeholder="Search for Song..." onKeyPress={this._inputValueHandlerSong}/>
 				</div>
 				<SelectFilter onVenueValue={this._handleVenueValue} />			
 				<SearchResults resultsArr={this.state.resultsArr}/>
@@ -103,7 +135,7 @@ var SearchResults = React.createClass({
 		console.log('searchresults', resultsArr)
 		return(
 			<div className="panel panel-default searchResults">
-				<table className="table table-striped"id="tableView">
+				<table className="table table-striped" id="tableView">
 					<ShowResultsTableHeaders />
 					<tbody id="tableData">
 						{resultsArr.map(this._resultsTableData)}
@@ -191,8 +223,11 @@ var SiteHeader = React.createClass({
 	render: function(){
 		return(
 			<div className="jumbotron" id="siteHeader" >
-				<h1>SINGIT!</h1>
-				<p>Find your favorite songs at your favorite karaoke places</p>
+				<div className="site-title"> 
+					<h1>SINGIT!</h1>
+					<p>Find your favorite songs at your favorite karaoke places</p>
+				</div>
+				<i className="fa fa-angle-double-down downer"></i>
 			</div>
 		)
 	}
