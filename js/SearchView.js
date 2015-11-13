@@ -1,6 +1,8 @@
 var React = require('react')
 var Parse = require('parse')
 
+import {VenueProfile} from './VenueProfile.js'
+
 window.SR = SearchResults
 
 var SearchView = React.createClass({
@@ -104,7 +106,7 @@ var LoginButtonOwner = React.createClass({
 	
 	render: function(){
 		return(
-			<button id="loginOwnerButton" type="button" onClick={this._changeHashLoginViewOwner}>Owner Login</button>
+			<button className="btn btn-default" id="loginOwnerButton" type="button" onClick={this._changeHashLoginViewOwner}>Owner Login</button>
 		)
 	}
 })
@@ -194,11 +196,15 @@ var ShowResultsTableData = React.createClass({
 
 	render: function(){
 		var singleResult = this.props.results
+		// <VenueProfile editable='false' popup='true'/>
 		return(		
 			<tr>
 				<td>{singleResult.Song}</td>
 				<td>{singleResult.Artist}</td>
-				<td><a onClick={this._hashVenueProfile}>{singleResult.VenueName}</a></td>
+				<td>
+					<a className="venueLink" onClick={this._hashVenueProfile}>{singleResult.VenueName}</a>
+					
+				</td>
 			</tr>	
 		)
 	}
@@ -220,6 +226,13 @@ var ShowResultsTableHeaders = React.createClass({
 })
 
 var SiteHeader = React.createClass({
+
+	_scrollDown: function(click){
+		
+		var yCoord = window.scrollBy(0, 350);
+
+	},
+
 	render: function(){
 		return(
 			<div className="jumbotron" id="siteHeader" >
@@ -227,7 +240,9 @@ var SiteHeader = React.createClass({
 					<h1>SINGIT!</h1>
 					<p>Find your favorite songs at your favorite karaoke places</p>
 				</div>
-				<i className="fa fa-angle-double-down downer"></i>
+				<div onClick={this._scrollDown} id="arrowDown">
+					<i className="fa fa-angle-double-down downer"></i>
+				</div>
 			</div>
 		)
 	}

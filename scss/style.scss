@@ -109,6 +109,8 @@ aside{
     }    
 }
 
+
+
 #fileinput{
     margin: 7% 25%;
 }
@@ -116,6 +118,19 @@ aside{
 #ownerView{
 
     padding: 0px;
+
+    #csvHeader{
+       margin: 0 auto;
+    }
+
+    #editProfileHeader{
+        margin: 0 auto;
+    }
+
+    #editProfilePanel{
+        padding: 0;
+        margin-top: 2%;
+    }
 
     .ownerLogOut{
         float: right;
@@ -132,17 +147,18 @@ aside{
     }
 }
 
+#saveProfileEdits{
+    margin: 3%;
+}
+
 #searchView{
 
-    #inputSearch{
-        border: 0px;
-        float: none;
-        margin: 0 auto;
-        width: 70%;
+    #arrowDown:hover{
+        cursor: pointer;
     }
 
-    #loginOwnerButton{
-        float: right;
+    .venueLink:hover + #popup{
+        display: block;
     }
 
     .searchResults{
@@ -153,7 +169,24 @@ aside{
             border: 0px;
             width: 80%;
             margin: 0 auto;
-        }      
+        } 
+    }     
+    
+
+    #inputSearch{
+        border: 0px;
+        float: none;
+        margin: 0 auto;
+        width: 70%;
+    }
+
+    #loginOwnerButton{
+        float: right;
+        margin: 10px;
+    }
+
+    #popup{
+        display: none;
     }
 
     #siteHeader{

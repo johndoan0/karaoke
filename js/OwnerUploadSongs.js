@@ -9,7 +9,7 @@ var UploaderView = React.createClass({
 	render: function(){
 
 		return (
-			<div className="panel panel-primary col-xs-4 col-sm-4 col-md-4 col-lg-4" id="ownerView">	
+			<div className="panel panel-primary col-xs-offset-1 col-xs-10" id="ownerView">	
 				<PanelHeader />				
 				<div className="panel-body" id="ownerPanelBody">					
 					<UploadSongs />
@@ -36,9 +36,14 @@ var UploadSongs = React.createClass({
 			// console.log('results', reader.result)
 			var resultFile = reader.result.split('\n')
 			var keysArr = resultFile[0].split(',')
-			resultFile.shift()
-			var valsMatrix = resultFile.map(function(ele){return ele.toLowerCase().split(',')})
+			console.log('keysArr', keysArr)
 			
+			resultFile.shift()
+
+			var valsMatrix = resultFile.map(function(ele){return ele.toLowerCase().split(',')})
+			console.log('valsMatrix', valsMatrix)
+
+
 			var songsRowObj = valsMatrix.map(function(arrEle){
 				var songsForParse = new Parse.Object('karaoke'),
 					venueId = Parse.User.current().getUsername()
@@ -92,10 +97,12 @@ var UploadSongs = React.createClass({
 
 	render: function(){
 		return(
-			<form id="ownerUpload">
-				<h4>Upload a .csv song list</h4>
-					<input type="file" accept="txt/*" id="fileinput"/>
-					<input type="submit" onClick={this._readFile} />
+			<form className="panel panel-info" id="ownerUpload">
+				<h4 className="panel-heading" id="csvHeader">Upload a .csv song list</h4>
+					<div className="panel-body">
+						<input type="file" accept="txt/*" id="fileinput"/>
+						<input type="submit" onClick={this._readFile} />
+					</div>
 			</form>
 		)
 	}

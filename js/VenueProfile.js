@@ -31,6 +31,7 @@ var VenueProfile = React.createClass({
 		}
 		else{
 			var vName = location.hash.split('/')[1]
+			// var vName = document.querySelector('.venueLink')[0].innerHTML
 		}
 		var venueProfileQuery = new Parse.Query('venueProfile')
 		var vPQContains = venueProfileQuery.contains('venueName', vName)
@@ -78,6 +79,7 @@ var VenueProfile = React.createClass({
 										})
 										results.save()
 										alert('Updates to Profile Saved!')
+										location.hash = "ownerView"
 									}
 								}
 							)
@@ -86,18 +88,31 @@ var VenueProfile = React.createClass({
 	render: function(){
 		if (this.props.editable === 'true'){
 			return(
-				<div className="panel panel-primary col-xs-4 col-sm-4 col-md-4 col-lg-4" id="ownerView">	
+				<div className="panel panel-primary col-xs-offset-1 col-xs-10" id="ownerView">	
 					<PanelHeader />
-					<div className="panel panel-info">
-						<div className="panel-heading">Edit Your Profile</div>
+					<div className="panel panel-info col-xs-offset-1 col-xs-10" id="editProfilePanel">
+						<h6 id="editProfileHeader" className="panel-heading text-center">Edit Your Profile</h6>
 						<div className="panel-body">	
 							{this.state.vProfileInfo}
 						</div>
 					</div>
-					<button type="button" onClick={this._saveEdits}>Save</button>
+					<button id="saveProfileEdits" type="button" onClick={this._saveEdits}>Save</button>
 					<GoBackOwnerViewButton />
 				</div>
 			)	
+		}
+
+		if (this.props.editable === 'false' && this.props.popup === 'true'){
+
+			var vName = document.querySelector('.venueLink').innerHTML
+
+			return(
+				<div id="popup" className="panel panel-primary col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6">	
+					<div className="panel-heading">{vName} Profile</div>			
+					{this.state.vProfileInfo}
+				</div>
+			)
+
 		}
 
 		if (this.props.editable === 'false'){
@@ -105,7 +120,7 @@ var VenueProfile = React.createClass({
 			var vName = location.hash.split('/')[1]
 			
 			return(
-				<div className="panel panel-primary col-xs-4 col-sm-4 col-md-4 col-lg-4" id="userViewProfile">	
+				<div className="panel panel-primary col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6" id="userViewProfile">	
 					<div className="panel-heading">{vName} Profile</div>			
 					{this.state.vProfileInfo}
 					<button id="backToSearch" type="button" onClick={this._backToSearchView}>Back to Search</button>

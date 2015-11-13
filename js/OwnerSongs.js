@@ -8,7 +8,7 @@ import {GoBackOwnerViewButton} from './OwnerUploadSongs.js'
 var OwnerSongsView = React.createClass({
 	render: function(){
 		return(
-			<div className="panel panel-primary col-xs-9 col-sm-9 col-md-9 col-lg-9" id="ownerView">	
+			<div className="panel panel-primary col-xs-offset-1 col-xs-10" id="ownerView">	
 				<PanelHeader />				
 				<div className="panel-body" id="ownerPanelBody">					
 					<OwnerSongsTable />
